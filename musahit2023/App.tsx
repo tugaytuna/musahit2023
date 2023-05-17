@@ -15,10 +15,10 @@ function App(){
 
   return (
     <NavigationContainer>
-   <Tab.Navigator>
-      <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Settings" component={CreatePost} />
-      <Tab.Screen name="Settings" component={About} />
+   <Tab.Navigator >
+      <Tab.Screen name="Home" component={Home} options={{headerShown: false}} />
+      <Tab.Screen name="CreatePost" component={CreatePost} options={{headerShown: false}} />
+      <Tab.Screen name="About" component={About} options={{headerShown: false}} />
     </Tab.Navigator>
   </NavigationContainer>
   );
