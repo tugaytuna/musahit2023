@@ -26,6 +26,20 @@ const CreatePost = () => {
   return (
     <ScrollView style={style.contain}>
       <Header />
+      <Text
+        style={[
+          style.infoText,
+          {textAlign: 'center', fontSize: 20, marginTop: 10},
+        ]}>
+        İstanbul
+      </Text>
+      <Text
+        style={[
+          style.infoText,
+          {textAlign: 'center', fontSize: 20, marginTop: 10},
+        ]}>
+        Kadıköy
+      </Text>
       <View style={style.infoContain}>
         <Text style={style.infoText}>Sandık No: </Text>
         <Text style={style.infoText}>1259</Text>
