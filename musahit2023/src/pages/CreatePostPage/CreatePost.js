@@ -1,7 +1,8 @@
 import {React, useState, useEffect} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
 import Header from '../../components/Header';
 import Candidate from '../../components/Candidate';
+import SendButton from '../../components/SendButton';
 
 import style from './CreatePost.style';
 
@@ -17,13 +18,13 @@ const CreatePost = () => {
 
   useEffect(() => {
     setTotalVote(rteVote + kkVote + errVote);
-    setRteVotePerc(rteVote / totalVote);
-    setKkVotePerc(kkVote / totalVote);
+    setRteVotePerc(rteVote / (rteVote + kkVote));
+    setKkVotePerc(kkVote / (rteVote + kkVote));
     setErrVotePerc(errVote / totalVote);
   }, [rteVote, kkVote, errVote]);
 
   return (
-    <View style={style.contain}>
+    <ScrollView style={style.contain}>
       <Header />
       <View style={style.infoContain}>
         <Text style={style.infoText}>Sandık No: </Text>
@@ -73,8 +74,8 @@ const CreatePost = () => {
         <Text style={[style.infoText, {fontSize: 18}]}>Toplam Seçmen: </Text>
         <Text style={[style.infoText, {fontSize: 18}]}>{totalVote}</Text>
       </View>
-      <Text>CreatePost</Text>
-    </View>
+      <SendButton />
+    </ScrollView>
   );
 };
 
