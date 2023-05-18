@@ -6,6 +6,7 @@ import colors from '../../styles/colors';
 import style from './Home.style';
 import BoxResult from '../../components/BoxResult';
 import testData from './testData';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Home = () => {
   const renderData = item => {
@@ -24,19 +25,22 @@ const Home = () => {
   return (
     <View style={style.contain}>
       <Header />
+
       <View style={style.filter}>
         <TextInput
-          style={{color: 'white', fontSize: 24, textAlign: 'center', flex: 0.8}}
-          placeholder="Sandık No"
+          style={{color: 'white', fontSize: 20, textAlign: 'center', flex: 0.8}}
+          placeholder="sandık numarası giriniz..."
           placeholderTextColor={'white'}
         />
-        <Text style={{flex: 0.2}}>Filter</Text>
+        <Icon
+          style={{flex: 0.4, verticalAlign: 'middle'}}
+          name="filter"
+          size={30}
+          color={'white'}
+        />
       </View>
-
       <FlatList data={testData} renderItem={item => renderData(item)} />
-
       {/* <Text>@Tugay Tuna - 2023</Text> */}
-
       {/* <BoxResult
         name={'Kemal Kılıçdaroğlu'}
         voteCount={321}

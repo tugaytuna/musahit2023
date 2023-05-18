@@ -3,6 +3,7 @@ import {View, Text, ScrollView} from 'react-native';
 import Header from '../../components/Header';
 import Candidate from '../../components/Candidate';
 import SendButton from '../../components/SendButton';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import style from './CreatePost.style';
 
@@ -43,7 +44,9 @@ const CreatePost = () => {
       <View style={style.infoContain}>
         <Text style={style.infoText}>Sandık No: </Text>
         <Text style={style.infoText}>1259</Text>
-        <Text>Edit</Text>
+        <View style={{alignItems: 'flex-end'}}>
+          <Icon name="edit" size={20} color="#ffffff" />
+        </View>
       </View>
       <Candidate
         name={'Recep Tayyip Erdoğan'}
