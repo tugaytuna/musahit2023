@@ -3,7 +3,15 @@ import React from 'react';
 
 import style from './Candidate.style';
 
-const Candidate = ({name, photoURL, styleCandi}) => {
+const Candidate = ({
+  name,
+  photoURL,
+  styleCandi,
+  voteCount,
+  increase,
+  decrease,
+  votePerc,
+}) => {
   return (
     <View style={style[styleCandi].contain}>
       <Text style={style[styleCandi].title}>{name}</Text>
@@ -13,15 +21,17 @@ const Candidate = ({name, photoURL, styleCandi}) => {
         )}
         <View style={style[styleCandi].count}>
           <View style={style[styleCandi].counter}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={decrease}>
               <Text style={style[styleCandi].numberComp}>-</Text>
             </TouchableOpacity>
-            <Text style={style[styleCandi].numberComp}>144</Text>
-            <TouchableOpacity>
+            <Text style={style[styleCandi].numberComp}>{voteCount}</Text>
+            <TouchableOpacity onPress={increase}>
               <Text style={style[styleCandi].numberComp}>+</Text>
             </TouchableOpacity>
           </View>
-          <Text style={style[styleCandi].percent}>%50</Text>
+          <Text style={style[styleCandi].percent}>{`% ${(votePerc * 100)
+            .toString()
+            .slice(0, 5)}`}</Text>
         </View>
       </View>
     </View>

@@ -9,11 +9,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginTop: 15,
-    // width: deviceSize.width,
-    // backgroundColor: 'red',
   },
   infoText: {
-    // flex: 1,
     color: 'white',
     fontSize: 24,
   },
