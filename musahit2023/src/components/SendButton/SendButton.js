@@ -3,9 +3,9 @@ import React from 'react';
 
 import style from './SendButton.style';
 
-const SendButton = () => {
+const SendButton = ({click}) => {
   return (
-    <TouchableOpacity style={style.contain}>
+    <TouchableOpacity style={style.contain} onPress={click}>
       <Text style={style.title}>KAYDET</Text>
     </TouchableOpacity>
   );

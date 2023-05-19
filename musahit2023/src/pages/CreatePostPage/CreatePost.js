@@ -4,6 +4,8 @@ import Header from '../../components/Header';
 import Candidate from '../../components/Candidate';
 import SendButton from '../../components/SendButton';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {SelectList} from 'react-native-dropdown-select-list';
+import citiesList from './../../assets/dataCitiesList';
 
 import style from './CreatePost.style';
 
@@ -16,6 +18,28 @@ const CreatePost = () => {
   const [kkVotePerc, setKkVotePerc] = useState(144);
   const [errVotePerc, setErrVotePerc] = useState(2);
   const [totalVote, setTotalVote] = useState(0);
+
+  const cities = citiesList.map(item => {
+    return item.name;
+  });
+  console.log('cities', cities);
+
+  const dataCities = [
+    {key: '1', value: 'Mobiles', disabled: false},
+    {key: '2', value: 'Appliances'},
+    {key: '3', value: 'Cameras'},
+    {key: '4', value: 'Computers'},
+    {key: '5', value: 'Vegetables'},
+    {key: '6', value: 'Diary Products'},
+    {key: '7', value: 'Drinks'},
+  ];
+
+  const formData = {
+    rteVote,
+    kkVote,
+    errVote,
+    totalVote,
+  };
 
   useEffect(() => {
     setTotalVote(rteVote + kkVote + errVote);
@@ -34,6 +58,11 @@ const CreatePost = () => {
         ]}>
         İstanbul
       </Text>
+      <SelectList
+        setSelected={val => console.log(val)}
+        data={cities}
+        save="value"
+      />
       <Text
         style={[
           style.infoText,
@@ -91,7 +120,11 @@ const CreatePost = () => {
         <Text style={[style.infoText, {fontSize: 18}]}>Toplam Seçmen: </Text>
         <Text style={[style.infoText, {fontSize: 18}]}>{totalVote}</Text>
       </View>
-      <SendButton />
+      <SendButton
+        click={() => {
+          console.log(formData);
+        }}
+      />
     </ScrollView>
   );
 };
