@@ -13,9 +13,9 @@ import cities from './../../assets/cities.js';
 import style from './CreatePost.style';
 
 const CreatePost = () => {
-  const [rteVote, setRteVote] = useState(144);
-  const [kkVote, setKkVote] = useState(144);
-  const [errVote, setErrVote] = useState(2);
+  const [rteVote, setRteVote] = useState(0);
+  const [kkVote, setKkVote] = useState(0);
+  const [errVote, setErrVote] = useState(0);
 
   const [rteVotePerc, setRteVotePerc] = useState(144);
   const [kkVotePerc, setKkVotePerc] = useState(144);
@@ -26,6 +26,7 @@ const CreatePost = () => {
   const [selectedDistrict, setSelectedDistrict] = useState(null);
 
   const [toggleEditBox, setToggleEditBox] = useState(false);
+  const [boxNumber, setboxNumber] = useState('1248');
 
   const districts = [];
 
@@ -55,10 +56,15 @@ const CreatePost = () => {
   const formData = {
     selectedCity,
     selectedDistrict,
+    boxNumber,
     rteVote,
     kkVote,
     errVote,
     totalVote,
+  };
+
+  const saveBox = () => {
+    formData && console.log(formData);
   };
 
   useEffect(() => {
@@ -101,10 +107,10 @@ const CreatePost = () => {
 
       <View style={style.infoContain}>
         <Text style={style.infoText}>Sandık No: </Text>
-        <Text style={style.infoText}>1259</Text>
+        <Text style={style.infoText}>{boxNumber}</Text>
         <TouchableWithoutFeedback
           onPress={() => {
-            console.log('edit');
+            setToggleEditBox(!toggleEditBox);
           }}
           style={{alignItems: 'flex-end'}}>
           <Icon name="edit" size={20} color="#ffffff" />
@@ -153,15 +159,14 @@ const CreatePost = () => {
         <Text style={[style.infoText, {fontSize: 18}]}>Toplam Seçmen: </Text>
         <Text style={[style.infoText, {fontSize: 18}]}>{totalVote}</Text>
       </View>
-      <SendButton
-        title={'KAYDET'}
-        click={() => {
-          console.log(formData);
-        }}
-      />
+      <SendButton title={'KAYDET'} click={saveBox} />
       <EditBoxNumberModal
         visible={toggleEditBox}
-        onClose={() => setToggleEditProfile(false)}
+        onClose={() => setToggleEditBox(false)}
+        onSend={boxNumber => {
+          setToggleEditBox(false);
+          setboxNumber(boxNumber);
+        }}
       />
     </ScrollView>
   );

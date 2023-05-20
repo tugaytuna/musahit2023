@@ -1,23 +1,37 @@
 import {View, Text, TextInput} from 'react-native';
-import React from 'react';
+import {React, useState} from 'react';
 import Modal from 'react-native-modal';
 
 import style from './EditBoxNumberModal.style';
+import SendButton from '../../SendButton';
 
-const EditBoxNumberModal = ({visible, onClose, onSend, displayName}) => {
+const EditBoxNumberModal = ({visible, onClose, onSend, sandıkNo}) => {
+  const [textBox, setTextBox] = useState('');
+
+  const saveBoxNumber = () => {
+    setTextBox('');
+    textBox && onSend(textBox);
+  };
+
   return (
-    <View style={style.contain}>
-      <Modal
-        style={style.modal}
-        isVisible={visible}
-        onSwipeComplete={onClose}
-        onBackdropPress={onClose}
-        onBackButtonPress={onClose}>
-        <View style={{flex: 1}}>
-          <Text>I am the modal content!</Text>
-        </View>
-      </Modal>
-    </View>
+    <Modal
+      style={style.modal}
+      isVisible={visible}
+      onSwipeComplete={onClose}
+      onBackdropPress={onClose}
+      onBackButtonPress={onClose}>
+      <View style={style.contain}>
+        <TextInput
+          style={style.textInput}
+          placeholder="Sandık no giriniz..."
+          placeholderTextColor={'white'}
+          onChangeText={e => setTextBox(e)}
+          value={textBox}
+          keyboardType="decimal-pad"
+        />
+        <SendButton title={'Kaydet'} click={saveBoxNumber} />
+      </View>
+    </Modal>
   );
 };
 
