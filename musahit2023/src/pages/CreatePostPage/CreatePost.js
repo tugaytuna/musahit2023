@@ -1,11 +1,13 @@
 import {React, useState, useEffect} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, TouchableWithoutFeedback} from 'react-native';
 import Header from '../../components/Header';
 import Candidate from '../../components/Candidate';
 import SendButton from '../../components/SendButton';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {SelectList} from 'react-native-dropdown-select-list';
+
 import citiesList from './../../assets/dataCitiesList';
+import cities from './../../assets/cities.js';
 
 import style from './CreatePost.style';
 
@@ -19,22 +21,37 @@ const CreatePost = () => {
   const [errVotePerc, setErrVotePerc] = useState(2);
   const [totalVote, setTotalVote] = useState(0);
 
-  const cities = citiesList.map(item => {
-    return item.name;
-  });
-  console.log('cities', cities);
+  const [selectedCity, setSelectedCity] = useState(null);
+  const [selectedDistrict, setSelectedDistrict] = useState(null);
 
-  const dataCities = [
-    {key: '1', value: 'Mobiles', disabled: false},
-    {key: '2', value: 'Appliances'},
-    {key: '3', value: 'Cameras'},
-    {key: '4', value: 'Computers'},
-    {key: '5', value: 'Vegetables'},
-    {key: '6', value: 'Diary Products'},
-    {key: '7', value: 'Drinks'},
-  ];
+  const districts = [];
+
+  useEffect(() => {
+    district();
+    // setSelectedDistrict(null);
+    // console.log(districts);
+  }, [selectedCity]);
+
+  const district = () => {
+    try {
+      districts.splice(0, districts.length); // clean
+      citiesList.map(item => {
+        if (item.name == selectedCity) {
+          item.towns.map(item => {
+            // console.log(item.name);
+            districts.push(item.name);
+            return item.name;
+          });
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const formData = {
+    selectedCity,
+    selectedDistrict,
     rteVote,
     kkVote,
     errVote,
@@ -51,31 +68,44 @@ const CreatePost = () => {
   return (
     <ScrollView style={style.contain}>
       <Header />
-      <Text
+      {/* <Text
         style={[
           style.infoText,
           {textAlign: 'center', fontSize: 20, marginTop: 10},
         ]}>
         İstanbul
-      </Text>
+      </Text> */}
       <SelectList
-        setSelected={val => console.log(val)}
+        placeholder="İl Seçiniz"
+        searchPlaceholder="İl ara..."
+        // boxStyles={{textAlign: 'center'}}
+        inputStyles={{color: 'white', textAlign: 'left'}}
+        dropdownTextStyles={{color: 'white'}}
+        setSelected={val => setSelectedCity(val)}
         data={cities}
         save="value"
       />
-      <Text
-        style={[
-          style.infoText,
-          {textAlign: 'center', fontSize: 20, marginTop: 10},
-        ]}>
-        Kadıköy
-      </Text>
+      <SelectList
+        placeholder="İlçe Seçiniz"
+        searchPlaceholder="İlçe ara..."
+        // boxStyles={{textAlign: 'center'}}
+        inputStyles={{color: 'white', textAlign: 'left'}}
+        dropdownTextStyles={{color: 'white'}}
+        setSelected={val => setSelectedDistrict(val)}
+        data={districts}
+        save="value"
+      />
+
       <View style={style.infoContain}>
         <Text style={style.infoText}>Sandık No: </Text>
         <Text style={style.infoText}>1259</Text>
-        <View style={{alignItems: 'flex-end'}}>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            console.log('edit');
+          }}
+          style={{alignItems: 'flex-end'}}>
           <Icon name="edit" size={20} color="#ffffff" />
-        </View>
+        </TouchableWithoutFeedback>
       </View>
       <Candidate
         name={'Recep Tayyip Erdoğan'}
