@@ -5,6 +5,7 @@ import Candidate from '../../components/Candidate';
 import SendButton from '../../components/SendButton';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {SelectList} from 'react-native-dropdown-select-list';
+import EditBoxNumberModal from '../../components/Modals/EditBoxNumberModal';
 
 import citiesList from './../../assets/dataCitiesList';
 import cities from './../../assets/cities.js';
@@ -23,6 +24,8 @@ const CreatePost = () => {
 
   const [selectedCity, setSelectedCity] = useState(null);
   const [selectedDistrict, setSelectedDistrict] = useState(null);
+
+  const [toggleEditBox, setToggleEditBox] = useState(false);
 
   const districts = [];
 
@@ -151,9 +154,14 @@ const CreatePost = () => {
         <Text style={[style.infoText, {fontSize: 18}]}>{totalVote}</Text>
       </View>
       <SendButton
+        title={'KAYDET'}
         click={() => {
           console.log(formData);
         }}
+      />
+      <EditBoxNumberModal
+        visible={toggleEditBox}
+        onClose={() => setToggleEditProfile(false)}
       />
     </ScrollView>
   );
