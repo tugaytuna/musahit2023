@@ -3,7 +3,7 @@ import React from 'react';
 
 import style from './SendButton.style';
 
-const SendButton = ({click, title="default"}) => {
+const SendButton = ({click, title = 'default'}) => {
   return (
     <TouchableOpacity style={style.contain} onPress={click}>
       <Text style={style.title}>{title}</Text>

@@ -64,7 +64,11 @@ const CreatePost = () => {
   };
 
   const saveBox = () => {
-    formData && console.log(formData);
+    if (formData.selectedCity == null || formData.selectedDistrict == null) {
+      // hata
+    } else {
+      formData && console.log(formData);
+    }
   };
 
   useEffect(() => {
@@ -127,7 +131,7 @@ const CreatePost = () => {
         decrease={() => {
           setRteVote(rteVote - 1);
         }}
-        votePerc={rteVotePerc}
+        votePerc={(rteVotePerc && rteVotePerc) || ''}
       />
       <Candidate
         name={'Kemal Kılıçdaroğlu'}
@@ -140,7 +144,7 @@ const CreatePost = () => {
         decrease={() => {
           setKkVote(kkVote - 1);
         }}
-        votePerc={kkVotePerc}
+        votePerc={(kkVotePerc && kkVotePerc) || ''}
       />
       <Candidate
         name={'Geçersiz Oy'}
@@ -153,7 +157,7 @@ const CreatePost = () => {
         decrease={() => {
           setErrVote(errVote - 1);
         }}
-        votePerc={errVotePerc}
+        votePerc={(errVotePerc && errVotePerc) || ''}
       />
       <View style={style.infoContain}>
         <Text style={[style.infoText, {fontSize: 18}]}>Toplam Seçmen: </Text>

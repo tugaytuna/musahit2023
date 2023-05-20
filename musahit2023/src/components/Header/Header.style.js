@@ -14,4 +14,5 @@ export default StyleSheet.create({
   image: {height: 82, width: 82},
   title: {marginTop: 10, fontSize: 36, textAlign: 'center', color: 'white'},
   sub_title: {fontSize: 20, textAlign: 'center', color: 'white'},
+  version: {position: 'absolute', fontSize: 12},
 });
