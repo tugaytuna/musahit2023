@@ -6,13 +6,14 @@ import SendButton from '../../components/SendButton';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {SelectList} from 'react-native-dropdown-select-list';
 import EditBoxNumberModal from '../../components/Modals/EditBoxNumberModal';
+import {showMessage, hideMessage} from 'react-native-flash-message';
 
 import citiesList from './../../assets/dataCitiesList';
 import cities from './../../assets/cities.js';
 
 import style from './CreatePost.style';
 
-const CreatePost = () => {
+const CreatePost = ({navigation}) => {
   const [rteVote, setRteVote] = useState(0);
   const [kkVote, setKkVote] = useState(0);
   const [errVote, setErrVote] = useState(0);
@@ -65,9 +66,20 @@ const CreatePost = () => {
 
   const saveBox = () => {
     if (formData.selectedCity == null || formData.selectedDistrict == null) {
-      // hata
+      // error
+      showMessage({
+        message: 'Tüm Bilgiler Eksiksiz Girilmeli!',
+        type: 'danger',
+      });
     } else {
       formData && console.log(formData);
+      showMessage({
+        message: 'Sandık Sayım Bilgileri Eklendi',
+        type: 'success',
+      });
+      //write on db
+      navigation.navigate('Home');
+      //make default all veriables
     }
   };
 
