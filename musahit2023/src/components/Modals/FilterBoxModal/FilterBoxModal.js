@@ -10,8 +10,17 @@ import style from './FilterBoxModal.style';
 const FilterBoxModal = ({visible, onClose, onSend}) => {
   const [selectedCity, setSelectedCity] = useState(null);
   const [selectedDistrict, setSelectedDistrict] = useState(null);
+  const [filterWinner, setFilterWinner] = useState('Hepsi');
 
   const districts = [];
+  const winner = ['Hepsi', 'Recep Tayyip Erdoğan', 'Kemal Kılıçdaroğlu'];
+
+  const filterInfo = {
+    selectedCity,
+    selectedDistrict,
+    //sandık no
+    filterWinner,
+  };
 
   // kod tekrarı var, buradaki district fonksiyonunu globale taşımak gerekiyor.
 
@@ -72,10 +81,21 @@ const FilterBoxModal = ({visible, onClose, onSend}) => {
           //   value={textBox}
           keyboardType="decimal-pad"
         />
+        <SelectList
+          placeholder="Kazanan"
+          searchPlaceholder="Aday Ara..."
+          boxStyles={{marginTop: 10}}
+          inputStyles={{color: 'white', textAlign: 'left'}}
+          dropdownTextStyles={{color: 'white'}}
+          setSelected={val => setSelectedCity(val)}
+          data={winner}
+          save="value"
+        />
         <SendButton
           title={'Filtrele'}
           click={() => {
             console.log('filter all');
+            console.log(filterInfo);
           }}
         />
       </View>

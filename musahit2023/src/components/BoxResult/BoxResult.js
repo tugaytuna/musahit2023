@@ -4,6 +4,8 @@ import React from 'react';
 import style from './BoxResult.style';
 
 const BoxResult = ({
+  selectedCity,
+  selectedDistrict,
   name,
   photoURL,
   styleCandi,
@@ -13,6 +15,11 @@ const BoxResult = ({
 }) => {
   return (
     <View style={style[styleCandi].contain}>
+      <Text
+        style={
+          style[styleCandi].sub_title
+        }>{`${selectedCity} -- ${selectedDistrict}`}</Text>
+
       <Text style={style[styleCandi].title}>{`Sandık No: ${boxNumber}`}</Text>
       <View style={style[styleCandi].subContain}>
         {photoURL && (

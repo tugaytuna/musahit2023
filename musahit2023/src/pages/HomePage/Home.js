@@ -17,11 +17,13 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import FilterBoxModal from '../../components/Modals/FilterBoxModal';
 
 const Home = () => {
-  const [filterModalToggle, setFilterModalToggle] = useState(true);
+  const [filterModalToggle, setFilterModalToggle] = useState(false);
 
   const renderData = item => {
     return (
       <BoxResult
+        selectedCity={item.item.selectedCity}
+        selectedDistrict={item.item.selectedDistrict}
         name={item.item.name}
         voteCount={item.item.voteCount}
         photoURL={item.item.photoURL}
@@ -48,22 +50,9 @@ const Home = () => {
           <Icon name="filter" size={30} color={'white'} />
         </TouchableOpacity>
       </View>
+
       <FlatList data={testData} renderItem={item => renderData(item)} />
-      {/* <Text>@Tugay Tuna - 2023</Text> */}
-      {/* <BoxResult
-        name={'Kemal Kılıçdaroğlu'}
-        voteCount={321}
-        photoURL={require(`./../../assets/kk.png`)}
-        styleCandi={'kk'}
-        votePerc={0.5248}
-      />
-      <BoxResult
-        name={'Recep Tayyip Erdoğan'}
-        voteCount={288}
-        photoURL={require(`./../../assets/rte.png`)}
-        styleCandi={'rte'}
-        votePerc={0.5115}
-      /> */}
+
       <StatusBar
         barStyle="light-content"
         hidden={false}

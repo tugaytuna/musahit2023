@@ -29,12 +29,12 @@ const CreatePost = ({navigation}) => {
   const [toggleEditBox, setToggleEditBox] = useState(false);
   const [boxNumber, setboxNumber] = useState('1248');
 
+  const [winnerName, setWinnerName] = useState(null);
+
   const districts = [];
 
   useEffect(() => {
     district();
-    // setSelectedDistrict(null);
-    // console.log(districts);
   }, [selectedCity]);
 
   const district = () => {
@@ -61,7 +61,10 @@ const CreatePost = ({navigation}) => {
     rteVote,
     kkVote,
     errVote,
-    totalVote,
+    voteCount: totalVote,
+    kkVotePerc,
+    rteVotePerc,
+    name: winnerName,
   };
 
   const saveBox = () => {
@@ -73,12 +76,14 @@ const CreatePost = ({navigation}) => {
       });
     } else {
       formData && console.log(formData);
+
       showMessage({
         message: 'Sandık Sayım Bilgileri Eklendi',
         type: 'success',
       });
       //write on db
       navigation.navigate('Home');
+
       //make default all veriables
     }
   };
@@ -88,6 +93,8 @@ const CreatePost = ({navigation}) => {
     setRteVotePerc(rteVote / (rteVote + kkVote));
     setKkVotePerc(kkVote / (rteVote + kkVote));
     setErrVotePerc(errVote / totalVote);
+    (rteVote > kkVote && setWinnerName('Recep Tayyip Erdoğan')) ||
+      setWinnerName('Kemal Kılıçdaroğlu');
   }, [rteVote, kkVote, errVote]);
 
   return (

@@ -17,6 +17,13 @@ const baseStyle = StyleSheet.create({
     textAlign: 'center',
     marginTop: 10,
   },
+  sub_title: {
+    color: 'white',
+    fontSize: 14,
+    // fontWeight: 'bold',
+    textAlign: 'center',
+    marginTop: 5,
+  },
   image: {
     height: 82,
     width: 82,

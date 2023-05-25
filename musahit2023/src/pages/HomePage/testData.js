@@ -1,5 +1,7 @@
 export default testData = [
   {
+    selectedCity: 'İstanbul',
+    selectedDistrict: 'Kadıköy',
     name: 'Kemal Kılıçdaroğlu',
     boxNumber: '1259',
     votePerc: 0.5248,
@@ -8,6 +10,8 @@ export default testData = [
     photoURL: require(`./../../assets/kk.png`),
   },
   {
+    selectedCity: 'İstanbul',
+    selectedDistrict: 'Üsküdar',
     name: 'Recep Tayyip Erdoğan',
     boxNumber: '1314',
     votePerc: 0.5135,
@@ -16,6 +20,8 @@ export default testData = [
     photoURL: require(`./../../assets/rte.png`),
   },
   {
+    selectedCity: 'İstanbul',
+    selectedDistrict: 'Kadıköy',
     name: 'Kemal Kılıçdaroğlu',
     boxNumber: '1259',
     votePerc: 0.5178,
@@ -24,6 +30,8 @@ export default testData = [
     photoURL: require(`./../../assets/kk.png`),
   },
   {
+    selectedCity: 'İstanbul',
+    selectedDistrict: 'Kadıköy',
     name: 'Recep Tayyip Erdoğan',
     boxNumber: '1489',
     votePerc: 0.5324,
