@@ -14,7 +14,7 @@ const Header = () => {
       </View>
       <Text style={style.title}>Cumhurbaşkanlığı Seçimi</Text>
       <Text style={style.sub_title}>2023</Text>
-      <Text style={style.version}>alpha-version: 0.105</Text>
+      <Text style={style.version}>alpha-version: 0.106</Text>
     </View>
   );
 };

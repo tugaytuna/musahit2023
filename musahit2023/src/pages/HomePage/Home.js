@@ -26,10 +26,10 @@ const Home = () => {
         selectedDistrict={item.item.selectedDistrict}
         name={item.item.name}
         voteCount={item.item.voteCount}
-        photoURL={item.item.photoURL}
-        styleCandi={item.item.styleCandi}
         votePerc={item.item.votePerc}
         boxNumber={item.item.boxNumber}
+        kkVotePerc={item.item.kkVotePerc}
+        rteVotePerc={item.item.rteVotePerc}
       />
     );
   };

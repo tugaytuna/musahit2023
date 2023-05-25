@@ -1,5 +1,5 @@
 import {View, Text, Image, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 import style from './BoxResult.style';
 
@@ -7,12 +7,26 @@ const BoxResult = ({
   selectedCity,
   selectedDistrict,
   name,
-  photoURL,
-  styleCandi,
   voteCount,
-  votePerc,
   boxNumber,
+  kkVotePerc,
+  rteVotePerc,
 }) => {
+  const [styleCandi, setStyleCandi] = useState('kk');
+  const [photoURL, setPhotoURL] = useState(require(`./../../assets/kk.png`));
+  const [votePerc, setVotePerc] = useState(0.2857142857142857);
+  useEffect(() => {
+    if (name == 'Kemal Kılıçdaroğlu') {
+      setVotePerc(kkVotePerc);
+      setStyleCandi('kk');
+      setPhotoURL(require(`./../../assets/kk.png`));
+    } else {
+      setVotePerc(rteVotePerc);
+      setStyleCandi('rte');
+      setPhotoURL(require(`./../../assets/rte.png`));
+    }
+  }, []);
+
   return (
     <View style={style[styleCandi].contain}>
       <Text
